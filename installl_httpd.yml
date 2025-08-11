@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: update repo
+    dnf:
+      update_cache: yes  
+
+  - name: install httpd
+    dnf:
+      name: httpd
+      state: latest
+
+  - name: add php
+    dnf:
+      name: php
+      state: latest
+        
