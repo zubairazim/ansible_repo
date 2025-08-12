@@ -5,15 +5,35 @@
   tasks:
 
   - name: update repo index
-    dnf:
+    apt:
       update_cache: yes  
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install apache2 package
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install php
+    apt:
+      name: libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: update repo index
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "RedHat"
 
   - name: install httpd package
     dnf:
       name: httpd
       state: latest
+    when: ansible_distribution == "RedHat"
 
   - name: install php
     dnf:
       name: php
       state: latest
+    when: ansible_distribution == "RedHat"
