@@ -4,17 +4,16 @@
   become: true
   tasks:
 
-  - name: update repo
+  - name: update repo index
     dnf:
       update_cache: yes  
 
-  - name: remove httpd
+  - name: remove httpd package
     dnf:
       name: httpd
       state: absent
 
-  - name: remove php
+  - name: remove  php
     dnf:
       name: php
       state: absent
-        
